@@ -35,13 +35,19 @@ class ModelSimple:
                             input_length=input_length))
 
         # Encoder
+        # # Bidirectional using LSTM
         model.add(Bidirectional(LSTM(256)))
+        # # RepeatVector, copies N copies of Encoder output (last time step) as Decoder N inputs
         model.add(RepeatVector(output_length))
 
         # Decoder
+        # Bidirectional using LSTM
         model.add(Bidirectional(LSTM(256, return_sequences=True)))
+        # # TimeDistributed, ensure consistency between Dense and Decoder
         model.add(TimeDistributed(Dense(512, activation='relu')))
-        model.add(Dropout(0.5))  # Regularize
+        # # Regularize
+        model.add(Dropout(0.5))
+        # # TimeDistributed, ensure consistency between Dense and Decoder
         model.add(TimeDistributed(Dense(output_vocab_size, activation='softmax')))
 
         # Create and compile Model

@@ -94,13 +94,15 @@ class TestTextPreprocessing(unittest.TestCase):
                     ['lock', 'it'],
                     ['i', 'loved', 'that', 'house'],
                     ['may', 'i', 'speak', 'to', 'you', 'outside', 'for', 'a', 'minute'],
-                    ["Hooray"]]
+                    ["Hooray"],
+                    ['lock', 'it']]
 
-        expected_data = np.array([[2, 3],
-                                  [4, 5],
-                                  [1, 6, 7, 8],
-                                  [9, 1, 10, 11, 12, 13, 14, 15, 16],
-                                  [17]])
+        expected_data = np.array([[4, 5],
+                                  [1, 2],
+                                  [3, 6, 7, 8],
+                                  [9, 3, 10, 11, 12, 13, 14, 15, 16],
+                                  [17],
+                                  [1, 2]])
 
         result_tuple = TextPreprocessor.convert_to_dictionary(norm_doc, 100)
         data = result_tuple[0]

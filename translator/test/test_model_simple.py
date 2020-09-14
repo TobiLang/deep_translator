@@ -6,12 +6,13 @@ Created on 13.09.2020
 import unittest
 import logging
 import tensorflow as tf
+from tensorflow.keras.utils import plot_model
 import numpy as np
 
 from translator.model_simple import ModelSimple
 
 
-class TestModel(unittest.TestCase):
+class TestModelSimple(unittest.TestCase):
     '''
     Testing of model generation, and cooccurrence matrix generation.
     '''
@@ -62,12 +63,13 @@ class TestModel(unittest.TestCase):
     @classmethod
     def test_model(cls):
         '''
-        Check whether the model compiles or not.
+        Check whether the model compiles or not, print summary and plot model.
         '''
         model = ModelSimple.create_model(input_vocab_size=80, embedding_dim=5,
                                          input_length=6, output_length=6,
                                          output_vocab_size=80, learning_rate=0.01)
         print(model.summary())
+        plot_model(model, to_file='model_simple.png', show_shapes=True, show_layer_names=True)
 
 
 if __name__ == "__main__":

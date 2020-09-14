@@ -98,7 +98,7 @@ class TextPreprocessor:
 
         sequences = tokenizer.texts_to_sequences(normalized_doc)
         # Find actual vocab size and longest sequence
-        vocab_size = np.max(np.max(sequences)) + 1  # Padding
+        vocab_size = max(max(sequences, key=lambda x: max(x, default=0))) + 1
         max_length = len(max(sequences, key=len))
 
         return sequences, tokenizer, vocab_size, max_length

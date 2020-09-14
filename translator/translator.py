@@ -139,14 +139,14 @@ class Translator:
 
         # Generate Model
         logging.info("Generating model ...")
-        input_vocab_size = prepared_data["destination_vocab_size"]  # + 2  # <UNK>
+        input_vocab_size = prepared_data["destination_vocab_size"]
         input_length = prepared_data["destination_max_length"]
-        output_vocab_size = prepared_data["target_vocab_size"]  # + 2  # <UNK>
+        output_vocab_size = prepared_data["target_vocab_size"]
         output_length = prepared_data["target_max_length"]
         logging.info(" ...with Params: Input (Voc,Len): %d,%d - Output (Voc,Len): %d/%d ",
                      input_vocab_size, input_length, output_vocab_size, output_length)
         model = translator_model.create_model(input_vocab_size, embedding_dim, input_length,
-                                output_vocab_size, output_length)
+                                              output_vocab_size, output_length)
 
         # Train Model
         logging.info("Training model for %d epochs ...", epochs)
